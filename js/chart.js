@@ -1,4 +1,5 @@
 var status=0;
+var ready=true;
 var quesElm=document.getElementById("question");
 var ans01elm=document.getElementById("answer01");
 var ans02elm=document.getElementById("answer02");
@@ -46,6 +47,8 @@ function quesSet(stat,ques,ans01,ans03,){
   setTimeout(function(){
     $('#answer01').fadeIn(500);
     $('#answer03').fadeIn(500);
+    ready=true;
+    console.log("true");
   },600)
 }
 
@@ -112,17 +115,28 @@ function pSetNow(paper){
 
 
 
+
+
+
+
+
+
+
 $(window).on('load',function(){
   $(".initP").animate({top:"-=90%",left:"+=3%"},2000,'swing');
   $(".initP").css({transform:"rotate(10deg)"});
 
   $(".mainTitle").fadeIn(1000);
+  $(".rotate").fadeIn(700);
   setTimeout(function(){
     $(".startText").fadeIn(1000);
   },1500)
 });
 
 $(".startText").on('click',function(){
+  if(ready){
+  ready=false;
+  console.log("false");
   status=1;
   $(".initP").animate({top:"-=70%"},700,'swing');
   $(".initP").css({transform:"rotate(15deg)"});
@@ -137,10 +151,16 @@ $(".startText").on('click',function(){
     $('#answer03').fadeIn(500);
     pSetLeft(leftPaper);
     pSetRight(rightPaper);
+    ready=true;
+    console.log("true");
   },800)
+  }
 });
 
 $("#answer01").on('click',function(){
+  if(ready){
+  ready=false;
+  console.log("false");
   $('#answer01').fadeOut(700);
   $('#answer02').fadeOut(300);
   $('#answer03').fadeOut(300);
@@ -163,7 +183,7 @@ $("#answer01").on('click',function(){
       quesSet(4,"呑むことは好き?","大好き!!","そこそこ...");
       break;
       case '4':
-      quesSet(5,"お酒をのむなら....","しっぽりしみじみ","みんなでワイワイ");
+      quesSet(16,"スポーツも好き？","もちろん","ふつうかな");
       break;
       case '5':
       resultSet("BAR部署");
@@ -198,11 +218,19 @@ $("#answer01").on('click',function(){
       case '15':
       resultSet("ディレクション部署");
       break;
+      case '16':
+      resultSet("運動会部署");
+      break;
+
     }
   },600)
+  }
 });
 
 $("#answer03").on('click',function(){
+  if(ready){
+  ready=false;
+  console.log("false");
   $('#answer01').fadeOut(300);
   $('#answer02').fadeOut(300);
   $('#answer03').fadeOut(700);
@@ -219,21 +247,7 @@ $("#answer03").on('click',function(){
       quesSet(8,"どんなものを作るのが好き？","大きいもの","細かいもの");
       break;
       case '2':
-      status=3;
-      quesElm.innerHTML="何をするのが好き？";
-      ans01elm.innerHTML="食べること";
-      ans02elm.innerHTML="運動";
-      ans03elm.innerHTML="映画鑑賞";
-      setTimeout(function(){
-        $("#question").css({"display":"block"});
-        $("#question").css({"opacity":0});
-        typing();
-      },200)
-      setTimeout(function(){
-        $('#answer01').fadeIn(500);
-        $('#answer02').fadeIn(500);
-        $('#answer03').fadeIn(500);
-      },600)
+      quesSet(3,"家で過ごすなら...","なんか食べる","なんか観る");
       break;
       case '3':
       quesSet(7,"音楽をよく聴く？","よく聴く","まぁまぁ");
@@ -274,6 +288,10 @@ $("#answer03").on('click',function(){
       case '15':
       resultSet("ワークショップ部署");
       break;
+      case '16':
+      quesSet(5,"お酒のむなら...","しっぽりしみじみ","みんなでワイワイ");
+      break;
     }
   },600)
+  }
   });
