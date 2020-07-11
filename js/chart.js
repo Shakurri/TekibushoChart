@@ -5,6 +5,7 @@ var ans01elm=document.getElementById("answer01");
 var ans02elm=document.getElementById("answer02");
 var ans03elm=document.getElementById("answer03");
 var resultElm=document.getElementById("result");
+var icomElm=document.getElementById("bushoIcon");
 
 var papers=[".yellowP",".grayP",".oliveP",".orangeP",".limeP"];
 var nowPaper=".yellowP";
@@ -52,15 +53,22 @@ function quesSet(stat,ques,ans01,ans03,){
   },600)
 }
 
-function resultSet(busho){
+function resultSet(busho,iconName){
   pAwayLR(leftPaper,rightPaper);
   setTimeout(function(){
     $('.osusume').fadeIn(300);
     resultElm.innerHTML=busho;
+    icomElm.src=iconName;
   },800)
   setTimeout(function(){
     $('#result').fadeIn(500);
   },1800)
+  setTimeout(function(){
+    $('#bushoIcon').fadeIn(500);
+  },1900)
+  setTimeout(function(){
+    $('.oneMoreButton').css({border:"solid 2px var(--mainblack)",color:"var(--mainblack)"});
+  },2100)
 }
 function pAwayNow(paper){
   $(paper).animate({top:"-=100%"},1000,'swing');
@@ -123,14 +131,23 @@ function pSetNow(paper){
 
 
 $(window).on('load',function(){
-  $(".initP").animate({top:"-=90%",left:"+=3%"},2000,'swing');
+  $(".initP").animate({top:"-=90%",left:"+=3%"},1700,'swing');
   $(".initP").css({transform:"rotate(10deg)"});
 
-  $(".mainTitle").fadeIn(1000);
+  $(".mainTitle").fadeIn(800);
+  $(".oneMoreButton").fadeIn(1000);
+  $(".caption").fadeIn(1000);
   $(".rotate").fadeIn(700);
   setTimeout(function(){
     $(".startText").fadeIn(1000);
-  },1500)
+  },1300)
+});
+
+$(".oneMoreButton").on('click',function(){
+  $(".resetWhite").fadeIn(800);
+  setTimeout(function(){
+    location.reload(true);
+  },800)
 });
 
 $(".startText").on('click',function(){
@@ -177,7 +194,7 @@ $("#answer01").on('click',function(){
       quesSet(2,"めちゃめちゃ目立ちたい!?","めっちゃ<br>目立ちたい!!!","少しは<br>目立ちたい!");
       break;
       case '2':
-      resultSet("ステージ部署");
+      resultSet("ステージ部署","image/bushoIcon/hiru-icon.png");
       break;
       case '3':
       quesSet(4,"呑むことは好き?","大好き!!","そこそこ...");
@@ -186,40 +203,40 @@ $("#answer01").on('click',function(){
       quesSet(16,"スポーツも好き？","もちろん","ふつうかな");
       break;
       case '5':
-      resultSet("BAR部署");
+      resultSet("BAR部署","image/bushoIcon/bar-icon.png");
       break;
       case '6':
-      resultSet("カフェ部署");
+      resultSet("カフェ部署","image/bushoIcon/cafe-icon.png");
       break;
       case '7':
-      resultSet("PA部署");
+      resultSet("PA部署","image/bushoIcon/pa-icon.png");
       break;
       case '8':
       quesSet(9,"家具にはこだわりがある?","けっこうある","そんなに...");
       break;
       case '9':
-      resultSet("インテリア部署");
+      resultSet("インテリア部署","image/bushoIcon/in-icon.png");
       break;
       case '10':
-      resultSet("エクステリア部署");
+      resultSet("エクステリア部署","image/bushoIcon/ex-icon.png");
       break;
       case '11':
       quesSet(12,"イラストには自信がある？","割とある","そこまで...");
       break;
       case '12':
-      resultSet("グラフィック部署");
+      resultSet("グラフィック部署","image/bushoIcon/gra-icon.png");
       break;
       case '13':
       quesSet(14,"どっちかといえば好きなのは？","さんすう","えいご");
       break;
       case '14':
-      resultSet("web部署");
+      resultSet("web部署","image/bushoIcon/web-icon.png");
       break;
       case '15':
-      resultSet("ディレクション部署");
+      resultSet("ディレクション部署","image/bushoIcon/d-icon.png");
       break;
       case '16':
-      resultSet("運動会部署");
+      resultSet("運動会部署","image/bushoIcon/undo-icon.png");
       break;
 
     }
@@ -256,7 +273,7 @@ $("#answer03").on('click',function(){
       quesSet(6,"甘いもの好き？","すき！！","そうでもない");
       break;
       case '5':
-      resultSet("PA部署");
+      resultSet("PA部署","image/bushoIcon/pa-icon.png");
       break;
       case '6':
       quesSet(7,"音楽をよく聴く？","よく聴く","まぁまぁ");
@@ -271,7 +288,7 @@ $("#answer03").on('click',function(){
       quesSet(10,"プロデュースするなら...","おしゃれな建物","おしゃれな食べ物");
       break;
       case '10':
-      resultSet("ブース部署");
+      resultSet("ブース部署","image/bushoIcon/booth-icon.png");
       break;
       case '11':
       quesSet(13,"自分はデジタル人間だ","たぶんそう","いや..?");
@@ -283,10 +300,10 @@ $("#answer03").on('click',function(){
       quesSet(15,"締め切りには厳しい方だ","そう思う","そうでもない");
       break;
       case '14':
-      resultSet("映像部署");
+      resultSet("映像部署","image/bushoIcon/movie-icon.png");
       break;
       case '15':
-      resultSet("ワークショップ部署");
+      resultSet("ワークショップ部署","image/bushoIcon/work-icon.png");
       break;
       case '16':
       quesSet(5,"お酒のむなら...","しっぽりしみじみ","みんなでワイワイ");
